@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2012 YIXIA.COM
+ * Copyright (C) 2013 yixia.com
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,35 +16,45 @@
 
 package io.vov.vitamio.demo;
 
-import io.vov.vitamio.MediaPlayer;
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
-import android.app.Activity;
-import android.content.res.Configuration;
-import android.os.Bundle;
 
 public class VideoViewDemo extends Activity {
 
-	private String path = "http://devimages.apple.com/iphone/samples/bipbop/gear1/prog_index.m3u8";
+	/**
+	 * TODO: Set the path variable to a streaming video URL or a local media file
+	 * path.
+	 */
+	private String path = "";
 	private VideoView mVideoView;
 
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
-		if (!io.vov.vitamio.LibsChecker.checkVitamioLibs(this))
+		if (!LibsChecker.checkVitamioLibs(this))
 			return;
-
 		setContentView(R.layout.videoview);
 		mVideoView = (VideoView) findViewById(R.id.surface_view);
-		mVideoView.setVideoPath(path);
-		mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);
-		mVideoView.setMediaController(new MediaController(this));
-	}
 
-	@Override
-	public void onConfigurationChanged(Configuration newConfig) {
-		if (mVideoView != null)
-			mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_SCALE, 0);
-		super.onConfigurationChanged(newConfig);
+		if (path == "") {
+			// Tell the user to provide a media file URL/path.
+			Toast.makeText(VideoViewDemo.this, "Please edit VideoViewDemo Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
+			return;
+		} else {
+
+			/*
+			 * Alternatively,for streaming media you can use
+			 * mVideoView.setVideoURI(Uri.parse(URLstring));
+			 */
+			mVideoView.setVideoPath(path);
+			mVideoView.setMediaController(new MediaController(this));
+			mVideoView.requestFocus();
+
+		}
 	}
 }
