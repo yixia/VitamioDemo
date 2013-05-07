@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.ContentHandler;
 
+import io.vov.vitamio.LibsChecker;
 import io.vov.vitamio.MediaPlayer;
 
 public class MediaPlayerDemo_Audio extends Activity {
@@ -49,6 +50,8 @@ public class MediaPlayerDemo_Audio extends Activity {
 	@Override
 	public void onCreate(Bundle icicle) {
 		super.onCreate(icicle);
+		if (!LibsChecker.checkVitamioLibs(this))
+			return;
 		tx = new TextView(this);
 		setContentView(tx);
 		Bundle extras = getIntent().getExtras();
