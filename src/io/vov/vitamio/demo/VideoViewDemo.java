@@ -56,11 +56,10 @@ public class VideoViewDemo extends Activity {
 			mVideoView.setMediaController(new MediaController(this));
 			mVideoView.requestFocus();
 
-			// optional
 			mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-
 				@Override
 				public void onPrepared(MediaPlayer mediaPlayer) {
+					// optional need Vitamio 4.0
 					mediaPlayer.setPlaybackSpeed(1.0f);
 				}
 			});
