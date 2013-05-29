@@ -16,11 +16,13 @@
 
 package io.vov.vitamio.demo;
 
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Toast;
 
 import io.vov.vitamio.LibsChecker;
+import io.vov.vitamio.MediaPlayer;
 import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
@@ -46,7 +48,6 @@ public class VideoViewDemo extends Activity {
 			Toast.makeText(VideoViewDemo.this, "Please edit VideoViewDemo Activity, and set path" + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
 			return;
 		} else {
-
 			/*
 			 * Alternatively,for streaming media you can use
 			 * mVideoView.setVideoURI(Uri.parse(URLstring));
@@ -55,6 +56,15 @@ public class VideoViewDemo extends Activity {
 			mVideoView.setMediaController(new MediaController(this));
 			mVideoView.requestFocus();
 
+			// optional
+			mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+
+				@Override
+				public void onPrepared(MediaPlayer mediaPlayer) {
+					mediaPlayer.setPlaybackSpeed(1.0f);
+				}
+			});
 		}
+
 	}
 }
