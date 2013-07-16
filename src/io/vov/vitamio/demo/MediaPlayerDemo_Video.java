@@ -17,6 +17,7 @@
 package io.vov.vitamio.demo;
 
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,6 +64,7 @@ public class MediaPlayerDemo_Video extends Activity implements OnBufferingUpdate
 		mPreview = (SurfaceView) findViewById(R.id.surface);
 		holder = mPreview.getHolder();
 		holder.addCallback(this);
+		holder.setFormat(PixelFormat.RGBA_8888); 
 		extras = getIntent().getExtras();
 
 	}
