@@ -3,6 +3,11 @@ VitamioDemo
 
 Demo of Vitamio for Android, it's reference the [VitamioBundle][1] .
 
+DEPRECATED
+==========
+
+Please use the VitamioBundle [sample][2]
+
 License
 =======
 
@@ -22,4 +27,5 @@ License
     limitations under the License.
 
 
-[1]: https://github.com/yixia/VitamioBundle/
+[1]: https://github.com/yixia/VitamioBundle
+[2]: https://github.com/yixia/VitamioBundle/tree/master/vitamio-sample
